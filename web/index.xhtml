@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Home</title>
+   </h:head>
+   <h:body>
+      <center>
+         <h1>Students</h1>
+         <h:form>
+            Enter First Name: <h:inputText value="#{studentBean.firstName}"></h:inputText>
+            <br/>
+            Enter Last Name: <h:inputText value="#{studentBean.lastName}"></h:inputText>
+            <br/>
+            Enter Email: <h:inputText value="#{studentBean.email}"></h:inputText>
+            <br/>
+            <h:commandButton value="Save" action="#{studentBean.addStudent}"></h:commandButton>
+         </h:form>
+
+         <h:dataTable value="#{studentBean.allStudents}" var="student">
+            <h:column>
+               <f:facet name="header">Id</f:facet>
+               <h:outputText value="#{student.id}"></h:outputText>
+            </h:column>
+            <h:column>
+               <f:facet name="header">First Name</f:facet>
+               <h:outputText value="#{student.firstName}"></h:outputText>
+            </h:column>
+            <h:column>
+               <f:facet name="header">Last Name</f:facet>
+               <h:outputText value="#{student.lastName}"></h:outputText>
+            </h:column>
+            <h:column>
+               <f:facet name="header">Email</f:facet>
+               <h:outputText value="#{student.email}"></h:outputText>
+            </h:column>
+         </h:dataTable>
+
+      </center>
+   </h:body>
+</html>
