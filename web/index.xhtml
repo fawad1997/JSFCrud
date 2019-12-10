@@ -38,6 +38,14 @@
                <f:facet name="header">Email</f:facet>
                <h:outputText value="#{student.email}"></h:outputText>
             </h:column>
+            <h:column>
+               <h:form>
+                  <f:facet name="header">Edit</f:facet>
+                  <h:commandButton value="Edit" action="#{studentBean.editStudent}">
+                     <f:param name="id" value="#{student.id}"></f:param>
+                  </h:commandButton>
+               </h:form>
+            </h:column>
          </h:dataTable>
 
       </center>

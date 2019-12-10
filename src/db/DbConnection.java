@@ -41,6 +41,33 @@ public class DbConnection {
         }
     }
 
+    public void updateRecord(int id,String firstName,String lastName,String email){
+        try {
+            String sqlQuery = "UPDATE student SET first_name=?,last_name=?,email=? WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setString(1,firstName);
+            preparedStatement.setString(2,lastName);
+            preparedStatement.setString(3,email);
+            preparedStatement.setInt(4,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet getRecord(int id){
+        try {
+            String sqlQuery = "SELECT * FROM student where id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,id);
+            ResultSet result = preparedStatement.executeQuery();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ResultSet getRecords(){
         try {
             String sqlQuery = "SELECT * FROM student";
