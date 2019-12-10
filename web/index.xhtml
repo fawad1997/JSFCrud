@@ -46,6 +46,15 @@
                   </h:commandButton>
                </h:form>
             </h:column>
+
+            <h:column>
+               <h:form>
+                  <f:facet name="header">Delete</f:facet>
+                  <h:commandButton value="Delete" action="#{studentBean.deleteStudent}">
+                     <f:param name="id" value="#{student.id}"></f:param>
+                  </h:commandButton>
+               </h:form>
+            </h:column>
          </h:dataTable>
 
       </center>

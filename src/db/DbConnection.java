@@ -55,6 +55,17 @@ public class DbConnection {
         }
     }
 
+    public void deleteRecord(int id){
+        try {
+            String sqlQuery = "DELETE from student WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ResultSet getRecord(int id){
         try {
             String sqlQuery = "SELECT * FROM student where id=?";

@@ -97,6 +97,15 @@ public class StudentBean {
         return "index.xhtml?faces-redirect=true";
     }
 
+    public String deleteStudent(){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+        int id = Integer.parseInt(params.get("id"));
+        DbConnection connection = new DbConnection();
+        connection.deleteRecord(id);
+        return "index.xhtml?faces-redirect=true";
+    }
+
     public List<StudentBean> getAllStudents(){
         List<StudentBean> students = new ArrayList<StudentBean>();
         try {
