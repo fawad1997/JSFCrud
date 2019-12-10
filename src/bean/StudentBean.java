@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class StudentBean {
     private int id;
     private String firstName;

@@ -5,58 +5,70 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <h:head>
-      <title>Home</title>
-   </h:head>
+   #{session.setAttribute("title","Welcome")}
+   <ui:include src="head.xhtml"></ui:include>
    <h:body>
-      <center>
+      <div class="container">
          <h1>Students</h1>
-         <h:form>
-            Enter First Name: <h:inputText value="#{studentBean.firstName}"></h:inputText>
-            <br/>
-            Enter Last Name: <h:inputText value="#{studentBean.lastName}"></h:inputText>
-            <br/>
-            Enter Email: <h:inputText value="#{studentBean.email}"></h:inputText>
-            <br/>
-            <h:commandButton value="Save" action="#{studentBean.addStudent}"></h:commandButton>
-         </h:form>
+         <hr/>
+         <div class="row">
+            <h:form>
+               <div class="form-group">
+                  <label>Enter First Name: </label>
+                  <h:inputText value="#{studentBean.firstName}" styleClass="form-control"></h:inputText>
+               </div>
+               <div class="form-group">
+                  <label>Enter Last Name: </label>
+                  <h:inputText value="#{studentBean.lastName}" styleClass="form-control"></h:inputText>
+               </div>
+               <div class="form-group">
+                  <label>Enter Email: </label>
+                  <h:inputText value="#{studentBean.email}" styleClass="form-control"></h:inputText>
+               </div>
+               <div class="form-group">
+                  <h:commandButton value="Save" action="#{studentBean.addStudent}" styleClass="btn btn-primary"></h:commandButton>
+               </div>
+            </h:form>
+         </div>
+         <hr/>
+         <div class="row">
+            <h:dataTable styleClass="table table-striped table-responsive table-hover" value="#{studentBean.allStudents}" var="student">
+               <h:column>
+                  <f:facet name="header">Id</f:facet>
+                  <h:outputText value="#{student.id}"></h:outputText>
+               </h:column>
+               <h:column>
+                  <f:facet name="header">First Name</f:facet>
+                  <h:outputText value="#{student.firstName}"></h:outputText>
+               </h:column>
+               <h:column>
+                  <f:facet name="header">Last Name</f:facet>
+                  <h:outputText value="#{student.lastName}"></h:outputText>
+               </h:column>
+               <h:column>
+                  <f:facet name="header">Email</f:facet>
+                  <h:outputText value="#{student.email}"></h:outputText>
+               </h:column>
+               <h:column>
+                  <h:form>
+                     <f:facet name="header">Edit</f:facet>
+                     <h:commandButton styleClass="btn btn-info" value="Edit" action="#{studentBean.editStudent}">
+                        <f:param name="id" value="#{student.id}"></f:param>
+                     </h:commandButton>
+                  </h:form>
+               </h:column>
 
-         <h:dataTable value="#{studentBean.allStudents}" var="student">
-            <h:column>
-               <f:facet name="header">Id</f:facet>
-               <h:outputText value="#{student.id}"></h:outputText>
-            </h:column>
-            <h:column>
-               <f:facet name="header">First Name</f:facet>
-               <h:outputText value="#{student.firstName}"></h:outputText>
-            </h:column>
-            <h:column>
-               <f:facet name="header">Last Name</f:facet>
-               <h:outputText value="#{student.lastName}"></h:outputText>
-            </h:column>
-            <h:column>
-               <f:facet name="header">Email</f:facet>
-               <h:outputText value="#{student.email}"></h:outputText>
-            </h:column>
-            <h:column>
-               <h:form>
-                  <f:facet name="header">Edit</f:facet>
-                  <h:commandButton value="Edit" action="#{studentBean.editStudent}">
-                     <f:param name="id" value="#{student.id}"></f:param>
-                  </h:commandButton>
-               </h:form>
-            </h:column>
+               <h:column>
+                  <h:form>
+                     <f:facet name="header">Delete</f:facet>
+                     <h:commandButton styleClass="btn btn-danger" value="Delete" action="#{studentBean.deleteStudent}">
+                        <f:param name="id" value="#{student.id}"></f:param>
+                     </h:commandButton>
+                  </h:form>
+               </h:column>
+            </h:dataTable>
+         </div>
 
-            <h:column>
-               <h:form>
-                  <f:facet name="header">Delete</f:facet>
-                  <h:commandButton value="Delete" action="#{studentBean.deleteStudent}">
-                     <f:param name="id" value="#{student.id}"></f:param>
-                  </h:commandButton>
-               </h:form>
-            </h:column>
-         </h:dataTable>
-
-      </center>
+      </div>
    </h:body>
 </html>
